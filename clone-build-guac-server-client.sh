@@ -1,4 +1,7 @@
 #!/bin/sh
+# Helper script that captures the command series to clone & build Guacamole (server & client)
+# You can find the latest version of this shell script @ https://github.com/krwittmer/fresh-guacamole
+#
 
 sudo apt-get update -y
 sudo apt-get install -y fail2ban build-essential htop libcairo2-dev libjpeg-turbo8-dev libjpeg-dev libpng-dev libossp-uuid-dev
