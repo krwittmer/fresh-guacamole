@@ -1,0 +1,45 @@
+version: '2.0'
+
+networks:
+  gnetwork:
+    driver: bridge
+
+services:
+  nginx-reverse-proxy:
+    depends_on:
+    - guacamole-web-app
+    image: roll-your-own-nginx/my-nginx-reverse-proxy
+    ports:
+      - "443:443"
+    links:
+      - guacamole-web-app # will use this one here
+    networks:
+      gnetwork:
+    restart: always
+
+  guacd-proxy:
+    container_name: guacd-proxy
+    image: guacamole/guacd
+    networks:
+      gnetwork:
+    restart: always
+
+  guacamole-web-app:
+    container_name: guacamole-web-app
+    hostname: guacamole-web-app
+    depends_on:
+    - guacd-proxy
+    environment:
+      GUACD_HOSTNAME: guacd
+      GUACD_PORT: 4822
+      MYSQL_HOSTNAME: 10.x.y.z
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: "guacamole_db"
+      MYSQL_USER: "guacamole_user"
+      MYSQL_PASSWORD: "gua$am255"
+    image: guacamole/guacamole
+    links:
+    - guacd-proxy
+    networks:
+      gnetwork:
+    restart: always

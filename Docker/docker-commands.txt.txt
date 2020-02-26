@@ -1,0 +1,16 @@
+
+
+docker info
+docker search --no-trunc --filter stars=25 guacamole
+
+
+docker run --rm guacamole/guacamole /opt/guacamole/bin/initdb.sh --mysql > initdb.sql
+
+
+docker run --name my-guac-proxy -e GUACD_LOG_LEVEL=debug -d guacamole/guacd
+docker ps -a
+docker run --name my-guac-webapp --link my-guac-proxy:guacd -d -p 8087:8080 -e MYSQL_HOSTNAME=10.x.y.z -e MYSQL_DATABASE=guacamole_db -e MYSQL_PORT=3306 -e MYSQL_USER=guacamole_user -e 'MYSQL_PASSWORD=gua$am255' guacamole/guacamole
+docker ps -a
+
+docker logs your-container-id 
+
