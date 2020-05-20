@@ -1,5 +1,4 @@
 
-
 docker info
 docker search --no-trunc --filter stars=25 guacamole
 
@@ -13,4 +12,3 @@ docker run --name my-guac-webapp --link my-guac-proxy:guacd -d -p 8087:8080 -e M
 docker ps -a
 
 docker logs your-container-id 
-
