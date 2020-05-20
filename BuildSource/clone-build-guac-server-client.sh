@@ -1,4 +1,5 @@
 #!/bin/sh
+#
 # Helper script that captures the command series to clone & build Guacamole (server & client)
 # You can find the latest version of this shell script @ https://github.com/krwittmer/fresh-guacamole
 #

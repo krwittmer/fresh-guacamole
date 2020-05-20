@@ -1,5 +1,5 @@
 #
-# Select specific Commands and run in blocks
+# Select specific command groups and run in blocks
 #
 sudo yum update -y
 sudo yum install kubuntu-desktop
